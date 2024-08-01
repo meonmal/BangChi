@@ -40,6 +40,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3af29060c86f78c449ed843faf3b59db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Damage: 0
+  DamageRate: 0
+  thingstoDamage: []
+  rigidbody2d: {fileID: 0}
 --- !u!1107 &-4571647134883183265
 AnimatorStateMachine:
   serializedVersion: 6
@@ -194,8 +198,7 @@ AnimatorState:
   m_Speed: 2
   m_CycleOffset: 0
   m_Transitions: []
-  m_StateMachineBehaviours:
-  - {fileID: -5424996083808292443}
+  m_StateMachineBehaviours: []
   m_Position: {x: 50, y: 50, z: 0}
   m_IKOnFeet: 0
   m_WriteDefaultValues: 1

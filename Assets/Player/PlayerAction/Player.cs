@@ -3,42 +3,49 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Player : MonoBehaviour
-{
-    public bool attack = false;
+{ 
 
-    public int AttackDamaged = 1;
-
-    public int AttckSpeed;
+    public float Power = 10.0f;
 
     Animator animator;
 
-    Transform Attacktransform;
-
-    IEnumerator AttackCoroutine;
-
-    void Attack()
-    {
-        attack = true;
-    }
-
-    private void Awake()
+    public void Awake()
     {
         animator = GetComponent<Animator>();
-
     }
 
-    void SetAction()
+    public void Start()
     {
-
+        Player myPlayer = new Player();
+        myPlayer.Attack();
     }
 
-    public int DMG
+    public void Update()
     {
-        get => AttackDamaged;
-        set
+        if (animator.GetCurrentAnimatorStateInfo(0).IsName("HeroKnight_Attack1") == true)
         {
-            AttackDamaged = value;
+            float animatorTime = animator.GetCurrentAnimatorStateInfo(0).normalizedTime;
+            if(animatorTime == 0)
+            {
+
+            }
+            if (animatorTime > 0 && animatorTime < 1.0f)
+            {
+
+            }
+            else if(animatorTime >= 1.0f)
+            {
+
+            }
         }
+            
     }
 
+
+    public void Attack()
+    {
+        Debug.Log(this.Power + "데미지를 입혔습니다.");
+    }
+
+    
 }
