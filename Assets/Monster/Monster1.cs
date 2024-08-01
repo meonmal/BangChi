@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.LowLevel;
 
 public class Monster1 : MonoBehaviour
 {
@@ -9,15 +10,24 @@ public class Monster1 : MonoBehaviour
     public float spawnX = -8.0f;
     public float spawnY = -0.4f;
 
-    int hp = 10;
+    public int hp = 10;
 
     bool isAlive = true;
+
+
+
+    public void Awake()
+    {
+        
+    }
 
 
     private void Start()
     {
         spawnY = transform.position.y;
     }
+
+
 
     private void Update()
     {
@@ -30,12 +40,27 @@ public class Monster1 : MonoBehaviour
         set
         {
             hp = value;
-            if(hp < 1)
+            if (hp < 1)
             {
                 OnDie();
             }
         }
     }
+
+    public void OnCollisionStay2D(Collision2D collision)
+    {
+        if (isAlive)
+        {
+             HP--;
+        }
+        
+    }
+
+    private void OnEnable()
+    {
+        
+    }
+
 
     void OnDie()
     {
@@ -43,6 +68,7 @@ public class Monster1 : MonoBehaviour
         {
             isAlive = false;
             Debug.Log("적이 죽었습니다");
+            
         }
     }
 }

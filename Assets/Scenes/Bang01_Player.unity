@@ -135,8 +135,9 @@ GameObject:
   - component: {fileID: 66804702}
   - component: {fileID: 66804705}
   - component: {fileID: 66804706}
+  - component: {fileID: 66804707}
   m_Layer: 0
-  m_Name: HeroKnight_0
+  m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -273,7 +274,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 66804701}
-  m_BodyType: 0
+  m_BodyType: 2
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 1
@@ -292,6 +293,21 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 7
+--- !u!114 &66804707
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 66804701}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d6e5298793fde7c4c9abaaf3ab750d21, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attack: 0
+  AttackDamaged: 1
+  AttckSpeed: 0
 --- !u!1 &223405378
 GameObject:
   m_ObjectHideFlags: 0
@@ -478,6 +494,7 @@ MonoBehaviour:
   moveSpeed: 5
   spawnX: -8
   spawnY: -0.4
+  hp: 10
 --- !u!58 &252207551
 CircleCollider2D:
   m_ObjectHideFlags: 0
