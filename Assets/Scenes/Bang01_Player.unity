@@ -263,8 +263,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.07292187, y: 0.60414827}
-  m_Size: {x: 2.322859, y: 2.322859}
+  m_Offset: {x: -0.1295852, y: 0.48478168}
+  m_Size: {x: 1.4944423, y: 1.971243}
   m_Direction: 0
 --- !u!50 &66804706
 Rigidbody2D:
@@ -274,11 +274,11 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 66804701}
-  m_BodyType: 0
+  m_BodyType: 1
   m_Simulated: 1
-  m_UseFullKinematicContacts: 0
+  m_UseFullKinematicContacts: 1
   m_UseAutoMass: 1
-  m_Mass: 4.2491355
+  m_Mass: 6.551955
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 0
@@ -305,7 +305,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6e5298793fde7c4c9abaaf3ab750d21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Power: 10
 --- !u!1 &223405378
 GameObject:
   m_ObjectHideFlags: 0
@@ -405,7 +404,7 @@ GameObject:
   - component: {fileID: 252207552}
   m_Layer: 0
   m_Name: Monster1
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -489,12 +488,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7987c4d18d7b264895e79705f0a1cbc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  lifeTime: 100000000
+  MaxHP: 20
   moveSpeed: 5
-  stopX: -8
-  spawnY: -0.4
-  Player: {fileID: 66804704}
-  targetPoint: {fileID: 0}
-  hp: 10
 --- !u!58 &252207551
 CircleCollider2D:
   m_ObjectHideFlags: 0

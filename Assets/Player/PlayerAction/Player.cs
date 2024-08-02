@@ -1,51 +1,38 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+[RequireComponent(typeof(Animator))]
+[RequireComponent(typeof(Rigidbody2D))]
 
 public class Player : MonoBehaviour
-{ 
+{
+    private const int MinPower = 1;
+    private const int MaxPower = 10;
 
-    public float Power = 10.0f;
+    int power = 1;
 
-    Animator animator;
+    Rigidbody2D rigid;
 
-    public void Awake()
+    int Power
     {
-        animator = GetComponent<Animator>();
-    }
+        get => power;
 
-    public void Start()
-    {
-        Player myPlayer = new Player();
-        myPlayer.Attack();
-    }
-
-    public void Update()
-    {
-        if (animator.GetCurrentAnimatorStateInfo(0).IsName("HeroKnight_Attack1") == true)
+        set
         {
-            float animatorTime = animator.GetCurrentAnimatorStateInfo(0).normalizedTime;
-            if(animatorTime == 0)
+            if(power != value)
             {
-
-            }
-            if (animatorTime > 0 && animatorTime < 1.0f)
-            {
-
-            }
-            else if(animatorTime >= 1.0f)
-            {
-
+                power = value;
             }
         }
-            
     }
 
-
-    public void Attack()
+    private void OnCollisionEnter2D(Collision2D collision)
     {
-        Debug.Log(this.Power + "µ¥¹ÌÁö¸¦ ÀÔÇû½À´Ï´Ù.");
+        if (collision.gameObject.CompareTag("Enemy"))
+        {
+            Debug.Log("Àû°ú ºÎµúÈû");
+        }
     }
 
-    
+
 }
