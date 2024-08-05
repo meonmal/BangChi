@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 [RequireComponent(typeof(Animator))]
 [RequireComponent(typeof(Rigidbody2D))]
@@ -15,9 +16,29 @@ public class Player : MonoBehaviour
 
     AnimationEvent trigger;
 
+    public string Player_Run;
+    public string Player_Idle;
+    public string Player_Attack;
+
+    string nowMode = "";
+
+
     public void Awake()
     {
+        Player player = GetComponent<Player>();
+        player.power = power;
+        
+    }
 
+    public void Start()
+    {
+        nowMode = Player_Run;
+    }
+
+    public void Update()
+    {
+        
+        
     }
 
     private void OnAnimatorIK(int layerIndex)
@@ -43,6 +64,7 @@ public class Player : MonoBehaviour
         if (collision.gameObject.CompareTag("Enemy"))
         {
             Debug.Log("Àû°ú ºÎµúÈû");
+            nowMode = Player_Attack;
         }
     }
 

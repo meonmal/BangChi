@@ -21,6 +21,8 @@ public class MonsterBase : MonoBehaviour
     bool IsAlive = true;
 
 
+
+
     int HP
     {
         get => hp;
@@ -52,6 +54,7 @@ public class MonsterBase : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision)
     {
         HP--;
+        moveSpeed = 0;
     }
 
 
@@ -91,7 +94,5 @@ public class MonsterBase : MonoBehaviour
         yield return new WaitForSeconds(time);
         gameObject.SetActive(false);
     }
-
-
 
 }
