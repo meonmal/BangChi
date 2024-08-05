@@ -67,12 +67,12 @@ public class MonsterBase : MonoBehaviour
 
 
 
-    private void OnHit()
+    public void OnHit()
     {
         Debug.Log("적이 맞았습니다");
     }
 
-    private void OnDie()
+    public void OnDie()
     {
         if (IsAlive)
         {
