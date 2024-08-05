@@ -9,9 +9,9 @@ public class MonsterBase : MonoBehaviour
 
     public float lifeTime = 100000000.0f;
 
-    int hp = 20;
+    int hp = 1;
 
-    public int MaxHP = 20;
+    public int MaxHP = 1;
 
     Rigidbody2D rigid;
 
@@ -49,13 +49,9 @@ public class MonsterBase : MonoBehaviour
         OnMoveUpdate(Time.deltaTime);
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Attack"))
-        {
-            hp--;
-            OnHit();
-        }
+        HP--;
     }
 
 
@@ -75,12 +71,26 @@ public class MonsterBase : MonoBehaviour
 
     private void OnDie()
     {
-        IsAlive = false;
+        if (IsAlive)
+        {
+            IsAlive = false;
 
-        Debug.Log("∏ÛΩ∫≈ÕªÁ∏¡");
+            Debug.Log("∏ÛΩ∫≈ÕªÁ∏¡");
+
+            DisableTimer();
+        }
     }
 
+    protected void DisableTimer(float time = 0.0f)
+    {
+        StartCoroutine(LifeOver(time));
+    }
 
+    IEnumerator LifeOver(float time = 0.0f)
+    {
+        yield return new WaitForSeconds(time);
+        gameObject.SetActive(false);
+    }
 
 
 

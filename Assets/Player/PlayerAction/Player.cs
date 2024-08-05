@@ -13,6 +13,18 @@ public class Player : MonoBehaviour
 
     Rigidbody2D rigid;
 
+    AnimationEvent trigger;
+
+    public void Awake()
+    {
+
+    }
+
+    private void OnAnimatorIK(int layerIndex)
+    {
+        AnimationEvent trigger = GetComponent<AnimationEvent>();
+    }
+
     int Power
     {
         get => power;
