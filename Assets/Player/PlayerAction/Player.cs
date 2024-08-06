@@ -10,7 +10,7 @@ public class Player : MonoBehaviour
     private const int MinPower = 1;
     private const int MaxPower = 10;
 
-    int power = 1;
+    public int power = 5;
 
     Rigidbody2D rigid;
 
@@ -18,15 +18,19 @@ public class Player : MonoBehaviour
 
     public string Player_Run;
     public string Player_Idle;
-    public string Player_Attack;
+    public bool Player_Attack;
 
     string nowMode = "";
-
+    
 
     public void Awake()
     {
         Player player = GetComponent<Player>();
         player.power = power;
+        MonsterBase monster = GetComponent<MonsterBase>();
+        power = monster.MaxHP--;
+
+        
         
     }
 
@@ -37,13 +41,16 @@ public class Player : MonoBehaviour
 
     public void Update()
     {
-        
-        
+        if(Player_Attack == true)
+        {
+            
+        }
     }
 
     private void OnAnimatorIK(int layerIndex)
     {
         AnimationEvent trigger = GetComponent<AnimationEvent>();
+
     }
 
     int Power
@@ -55,16 +62,18 @@ public class Player : MonoBehaviour
             if(power != value)
             {
                 power = value;
+                
             }
         }
     }
+
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Enemy"))
         {
             Debug.Log("Àû°ú ºÎµúÈû");
-            nowMode = Player_Attack;
+            
         }
     }
 

@@ -9,9 +9,9 @@ public class MonsterBase : MonoBehaviour
 
     public float lifeTime = 100000000.0f;
 
-    int hp = 1;
+    int hp = 20;
 
-    public int MaxHP = 1;
+    public int MaxHP = 20;
 
     Rigidbody2D rigid;
 
@@ -20,7 +20,13 @@ public class MonsterBase : MonoBehaviour
 
     bool IsAlive = true;
 
-
+    public void Awake()
+    {
+        Player player = GetComponent<Player>();
+        
+        MonsterBase monster = GetComponent<MonsterBase>();
+        
+    }
 
 
     int HP

@@ -305,9 +305,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6e5298793fde7c4c9abaaf3ab750d21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  power: 5
   Player_Run: 
   Player_Idle: 
-  Player_Attack: 
+  Player_Attack: 1
 --- !u!1 &223405378
 GameObject:
   m_ObjectHideFlags: 0
@@ -492,7 +493,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lifeTime: 100000000
-  MaxHP: 1
+  MaxHP: 20
   moveSpeed: 5
 --- !u!58 &252207551
 CircleCollider2D:
