@@ -26,9 +26,9 @@ public class Player : MonoBehaviour
     public void Awake()
     {
         Player player = GetComponent<Player>();
-        player.power = power;
-        MonsterBase monster = GetComponent<MonsterBase>();
-        power = monster.MaxHP--;
+        //player.power = power;
+        //MonsterBase monster = GetComponent<MonsterBase>();
+        //power = monster.MaxHP--;
 
         
         
