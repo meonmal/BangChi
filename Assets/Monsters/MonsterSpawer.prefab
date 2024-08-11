@@ -299,3 +299,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 46e90e29b444b9a45939b955da9611c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  WormPrefab: {fileID: 0}
+  Monster: {fileID: 0}

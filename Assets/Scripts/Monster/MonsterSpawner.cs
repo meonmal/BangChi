@@ -5,25 +5,26 @@ using UnityEngine;
 
 public class MonsterSpawner : MonoBehaviour
 {
-    protected const float SpawnX = 10;
-    protected const float SpawnY = 1;
+    public GameObject WormPrefab;
 
+    public GameObject Monster;
 
-
-    private void Start()
+    public void Awake()
     {
-        
+        MonsterBase monster = GetComponent<MonsterBase>();
     }
 
-
-
-    IEnumerator SpawnCoroutine()
+    public void Start()
     {
-        yield return new WaitForSeconds(SpawnX);
+
     }
 
-    protected virtual void Spawn()
+    public void Spwan()
     {
+        if(Monster = null)
+        {
+            Instantiate(WormPrefab);
 
+        }
     }
 }

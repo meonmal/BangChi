@@ -67,11 +67,10 @@ public class MonsterBase : MonoBehaviour
 
     private void OnRegen()
     {
-        this.gameObject.SetActive(true);
-        transform.position = new Vector3(30, -4, 0);
+       this.gameObject.SetActive(true);
+
         Player.GetComponent<Player>().Monster = this.gameObject;
 
-        OnMoveUpdate();
     }
 
 }
