@@ -2,23 +2,24 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 
 [RequireComponent (typeof (Rigidbody2D))]
 public class MonsterBase : MonoBehaviour
 {
+    public int Current_HP;
 
     public float lifeTime = 100000000.0f;
 
-    int hp = 20;
-
-    public int MaxHP = 20;
+    public int hp = 20;
 
     Rigidbody2D rigid;
 
 
     public float moveSpeed = 5.0f;
 
-    bool IsAlive = true;
+    public GameObject Player;
+
 
     public void Awake()
     {
@@ -28,39 +29,20 @@ public class MonsterBase : MonoBehaviour
         
     }
 
-
-    int HP
-    {
-        get => hp;
-        set
-        {
-            if(hp != value)
-            {
-                hp = value;
-                if (IsAlive)
-                {
-                    OnHit();
-                }
-                if (hp < 1)
-                {
-                    OnDie();
-                }
-                
-                
-            }
-
-        }
-    }
+    
 
     private void Update()
     {
         OnMoveUpdate(Time.deltaTime);
+        if(hp <= 1)
+        {
+            Player.GetComponent<Player>().Monster = null;
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        HP--;
-        moveSpeed = 0;
+        Player = GameObject.FindGameObjectWithTag("player");
     }
 
 
@@ -69,36 +51,5 @@ public class MonsterBase : MonoBehaviour
         transform.Translate(moveSpeed * Vector3.left * Time.deltaTime);
     }
 
-
-
-
-
-    public void OnHit()
-    {
-        Debug.Log("적이 맞았습니다");
-    }
-
-    public void OnDie()
-    {
-        if (IsAlive)
-        {
-            IsAlive = false;
-
-            Debug.Log("몬스터사망");
-
-            DisableTimer();
-        }
-    }
-
-    protected void DisableTimer(float time = 0.0f)
-    {
-        StartCoroutine(LifeOver(time));
-    }
-
-    IEnumerator LifeOver(float time = 0.0f)
-    {
-        yield return new WaitForSeconds(time);
-        gameObject.SetActive(false);
-    }
 
 }
