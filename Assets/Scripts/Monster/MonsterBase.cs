@@ -20,6 +20,7 @@ public class MonsterBase : MonoBehaviour
 
     public GameObject Player;
 
+    MonsterBase monster;
 
     public void Awake()
     {
@@ -33,23 +34,44 @@ public class MonsterBase : MonoBehaviour
 
     private void Update()
     {
-        OnMoveUpdate(Time.deltaTime);
+        OnMoveUpdate();
+
         if(hp <= 1)
         {
             Player.GetComponent<Player>().Monster = null;
+
+            OnDie();
         }
+        
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    public void OnCollisionEnter2D(Collision2D collision)
     {
         Player = GameObject.FindGameObjectWithTag("player");
     }
 
 
-    protected virtual void OnMoveUpdate(float deltaTime)
+    public void OnMoveUpdate()
     {
         transform.Translate(moveSpeed * Vector3.left * Time.deltaTime);
     }
 
+    private void OnDie()
+    {
+        this.gameObject.SetActive(false);
+
+
+
+        OnRegen();
+    }
+
+    private void OnRegen()
+    {
+        this.gameObject.SetActive(true);
+        transform.position = new Vector3(30, -4, 0);
+        Player.GetComponent<Player>().Monster = this.gameObject;
+
+        OnMoveUpdate();
+    }
 
 }
