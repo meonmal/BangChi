@@ -19,12 +19,19 @@ public class MonsterSpawner : MonoBehaviour
 
     }
 
+    private void Update()
+    {
+        if(Monster == null)
+        {
+            Spwan();
+        }
+    }
+
     public void Spwan()
     {
-        if(Monster = null)
-        {
-            Instantiate(WormPrefab);
+        
 
-        }
+        Instantiate(Monster);
+
     }
 }

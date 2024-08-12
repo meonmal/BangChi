@@ -27,6 +27,8 @@ public class MonsterBase : MonoBehaviour
         Player player = GetComponent<Player>();
         
         MonsterBase monster = GetComponent<MonsterBase>();
+
+        transform.position = new Vector3(30, -4, 0);
         
     }
 
@@ -56,13 +58,16 @@ public class MonsterBase : MonoBehaviour
         transform.Translate(moveSpeed * Vector3.left * Time.deltaTime);
     }
 
-    private void OnDie()
+    public void OnDie()
     {
         this.gameObject.SetActive(false);
 
 
 
         OnRegen();
+
+
+        Debug.Log("Á×À½");
     }
 
     private void OnRegen()
@@ -70,6 +75,12 @@ public class MonsterBase : MonoBehaviour
        this.gameObject.SetActive(true);
 
         Player.GetComponent<Player>().Monster = this.gameObject;
+
+        transform.position = new Vector3(30, -4, 0);
+
+        
+
+        Debug.Log("»ìÀ½");
 
     }
 

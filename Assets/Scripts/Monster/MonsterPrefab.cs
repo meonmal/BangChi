@@ -13,6 +13,13 @@ public class MonsterPrefab : MonoBehaviour
         monster = GetComponent<MonsterBase>();
     }
 
+    private void Start()
+    {
+        
+    }
+
+
+
     public void Update()
     {
         
