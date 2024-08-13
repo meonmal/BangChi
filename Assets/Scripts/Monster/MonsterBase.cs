@@ -15,6 +15,7 @@ public class MonsterBase : MonoBehaviour
 
     Rigidbody2D rigid;
 
+    public int point = 1;
 
     public float moveSpeed = 5.0f;
 
@@ -60,19 +61,24 @@ public class MonsterBase : MonoBehaviour
 
     public void OnDie()
     {
-        this.gameObject.SetActive(false);
+
+        Destroy(this.gameObject);
 
 
+        StageText stageText = FindAnyObjectByType<StageText>();
+        stageText.AddStage(point);
 
         OnRegen();
 
 
         Debug.Log("죽음");
+
+        
     }
 
     private void OnRegen()
     {
-       this.gameObject.SetActive(true);
+       
 
         Player.GetComponent<Player>().Monster = this.gameObject;
 
@@ -80,7 +86,7 @@ public class MonsterBase : MonoBehaviour
 
         
 
-        Debug.Log("살음");
+        // Debug.Log("살음");
 
     }
 
