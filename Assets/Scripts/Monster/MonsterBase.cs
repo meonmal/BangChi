@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 [RequireComponent (typeof (Rigidbody2D))]
-public class MonsterBase : MonoBehaviour
+public class MonsterBase : RecyclObject
 {
     public int Current_HP;
 
@@ -35,6 +35,9 @@ public class MonsterBase : MonoBehaviour
 
     
 
+
+
+
     private void Update()
     {
         OnMoveUpdate();
@@ -61,19 +64,20 @@ public class MonsterBase : MonoBehaviour
 
     public void OnDie()
     {
-
+        
+        
         Destroy(this.gameObject);
+
+        OnRegen();
 
 
         StageText stageText = FindAnyObjectByType<StageText>();
         stageText.AddStage(point);
 
-        OnRegen();
 
 
         Debug.Log("Á×À½");
 
-        
     }
 
     private void OnRegen()

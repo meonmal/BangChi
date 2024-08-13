@@ -22,19 +22,17 @@ public class StageText : MonoBehaviour
     public int Stage
     {
         get => StageIndex;
-        private set
+        set
         {
             StageIndex = value;
         }
     }
 
-    public void Update()
+    void Update()
     {
         if(displayStage < StageIndex)
-        {
-            
-
-            stage.text = $"{displayStage: f0}";
+        { 
+            stage.text = $"{displayStage:f0}";
         }
     }
 

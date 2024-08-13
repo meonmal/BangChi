@@ -5,8 +5,6 @@ using UnityEngine;
 
 public class MonsterSpawner : MonoBehaviour
 {
-    public GameObject WormPrefab;
-
     public GameObject Monster;
 
     public void Awake()
