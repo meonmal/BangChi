@@ -4,8 +4,24 @@ using UnityEngine;
 
 public class Monsters : MonoBehaviour
 {
-    public void Awake()
-    {
-        
-    }
+    //public GameObject monster;
+
+
+    //public void Awake()
+    //{
+    //    MonsterBase monster = GetComponent<MonsterBase>();
+    //}
+
+    //public void Update()
+    //{
+    //    if(monster != null)
+    //    {
+    //        if (monster.GetComponent<MonsterBase>().OnDie)
+    //        {
+    //            monster.GetComponent<MonsterBase>().OnRegen();
+    //        }
+            
+
+    //    }
+    //}
 }

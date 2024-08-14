@@ -30,13 +30,8 @@ public class MonsterBase : RecyclObject
         MonsterBase monster = GetComponent<MonsterBase>();
 
         transform.position = new Vector3(30, -4, 0);
-        
+
     }
-
-    
-
-
-
 
     private void Update()
     {
@@ -64,34 +59,39 @@ public class MonsterBase : RecyclObject
 
     public void OnDie()
     {
-        
-        
-        Destroy(this.gameObject);
-
-        OnRegen();
-
+        this.gameObject.SetActive(false);
 
         StageText stageText = FindAnyObjectByType<StageText>();
         stageText.AddStage(point);
 
-
-
         Debug.Log("Á×À½");
+
+        OnReset();
+
+        OnRegen();
+
 
     }
 
-    private void OnRegen()
+   
+
+
+    public void OnRegen()
     {
-       
+        this.gameObject.SetActive(true);
 
         Player.GetComponent<Player>().Monster = this.gameObject;
 
         transform.position = new Vector3(30, -4, 0);
 
-        
-
         // Debug.Log("»ìÀ½");
+    }
 
+    protected override void OnReset()
+    {
+        base.OnReset();
+
+        
     }
 
 }
