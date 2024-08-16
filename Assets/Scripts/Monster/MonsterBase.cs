@@ -7,7 +7,7 @@ using UnityEngine.UI;
 [RequireComponent (typeof (Rigidbody2D))]
 public class MonsterBase : RecyclObject
 {
-    public int Current_HP;
+    public int Current_HP = 20;
 
     public float lifeTime = 100000000.0f;
 
@@ -66,32 +66,28 @@ public class MonsterBase : RecyclObject
 
         Debug.Log("죽음");
 
-        OnReset();
-
-        OnRegen();
-
-
+        //OnRegen();
     }
 
-   
+
+    //public void offobj()
+    //{
+    //    this.gameObject.SetActive(false);
+    //}
+
+    //public void OnRegen()
+    //{
+    //    this.gameObject.SetActive(true);
+
+    //    Current_HP = hp;
+
+    //    Player.GetComponent<Player>().Monster = this.gameObject;
+
+    //    transform.position = new Vector3(30, -4, 0);
+
+    //    // Debug.Log("살음");
+    //}
 
 
-    public void OnRegen()
-    {
-        this.gameObject.SetActive(true);
-
-        Player.GetComponent<Player>().Monster = this.gameObject;
-
-        transform.position = new Vector3(30, -4, 0);
-
-        // Debug.Log("살음");
-    }
-
-    protected override void OnReset()
-    {
-        base.OnReset();
-
-        
-    }
 
 }
