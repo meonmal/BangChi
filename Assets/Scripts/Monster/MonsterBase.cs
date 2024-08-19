@@ -1,10 +1,12 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
+using Random = UnityEngine.Random;
 
-[RequireComponent (typeof (Rigidbody2D))]
+[RequireComponent(typeof(Rigidbody2D))]
 public class MonsterBase : RecyclObject
 {
     public int Current_HP = 20;
@@ -26,10 +28,11 @@ public class MonsterBase : RecyclObject
     public void Awake()
     {
         Player player = GetComponent<Player>();
-        
+
         MonsterBase monster = GetComponent<MonsterBase>();
 
         transform.position = new Vector3(30, -4, 0);
+
 
     }
 
@@ -37,13 +40,13 @@ public class MonsterBase : RecyclObject
     {
         OnMoveUpdate();
 
-        if(hp <= 1)
+        if (hp <= 1)
         {
             Player.GetComponent<Player>().Monster = null;
 
             OnDie();
         }
-        
+
     }
 
     public void OnCollisionEnter2D(Collision2D collision)
@@ -66,28 +69,20 @@ public class MonsterBase : RecyclObject
 
         Debug.Log("죽음");
 
-        //OnRegen();
+        OnRegen();
     }
 
+    public void OnRegen()
+    {
 
-    //public void offobj()
-    //{
-    //    this.gameObject.SetActive(false);
-    //}
+        this.gameObject.SetActive(true);
+        
 
-    //public void OnRegen()
-    //{
-    //    this.gameObject.SetActive(true);
+        Player.GetComponent<Player>().Monster = this.gameObject;
 
-    //    Current_HP = hp;
+        transform.position = new Vector3(30, -4, 0);
 
-    //    Player.GetComponent<Player>().Monster = this.gameObject;
-
-    //    transform.position = new Vector3(30, -4, 0);
-
-    //    // Debug.Log("살음");
-    //}
-
-
+        // Debug.Log("살음");
+    }
 
 }
