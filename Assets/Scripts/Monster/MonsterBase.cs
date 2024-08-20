@@ -1,88 +1,49 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Numerics;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.VFX;
 using Random = UnityEngine.Random;
 
 [RequireComponent(typeof(Rigidbody2D))]
-public class MonsterBase : RecyclObject
+public class MonsterBase : Character
 {
-    public int Current_HP = 20;
+    public Character target;
+    public int Lv_Hp = 200;
+    public int Lv_Gold = 200;   
 
-    public float lifeTime = 100000000.0f;
-
-    public int hp = 20;
-
-    Rigidbody2D rigid;
-
-    public int point = 1;
-
-    public float moveSpeed = 5.0f;
-
-    public GameObject Player;
-
-    MonsterBase monster;
-
-    public void Awake()
+    private void Start()
     {
-        Player player = GetComponent<Player>();
-
-        MonsterBase monster = GetComponent<MonsterBase>();
-
-        transform.position = new Vector3(30, -4, 0);
-
-
+        Init(10, 0);    // hp = 10, damage = 0
     }
 
     private void Update()
     {
-        OnMoveUpdate();
-
-        if (hp <= 1)
+        if (State == Character_State.Die)
         {
-            Player.GetComponent<Player>().Monster = null;
-
-            OnDie();
+            return;
         }
-
     }
 
-    public void OnCollisionEnter2D(Collision2D collision)
+    public override void OnDie()
     {
-        Player = GameObject.FindGameObjectWithTag("player");
+        base.OnDie();
+        Debug.Log("적 사망");
+        GameManager.Instance.m_Player_Value.Get_Gold(Gold, this.transform.position);
+        Spawn();
     }
 
-
-    public void OnMoveUpdate()
+    public void Spawn()
     {
-        transform.Translate(moveSpeed * Vector3.left * Time.deltaTime);
+        MaxHp += MaxHp * Lv_Hp / 100;
+        // MaxHp = 10 + 10 * 200 / 100 가 현재 상태다.
+        Gold += Gold * Lv_Gold / 100;
+        Hp = MaxHp;
+        State = Character_State.Idle;
     }
 
-    public void OnDie()
-    {
-        this.gameObject.SetActive(false);
-
-        StageText stageText = FindAnyObjectByType<StageText>();
-        stageText.AddStage(point);
-
-        Debug.Log("죽음");
-
-        OnRegen();
-    }
-
-    public void OnRegen()
-    {
-
-        this.gameObject.SetActive(true);
-        
-
-        Player.GetComponent<Player>().Monster = this.gameObject;
-
-        transform.position = new Vector3(30, -4, 0);
-
-        // Debug.Log("살음");
-    }
 
 }

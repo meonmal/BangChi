@@ -1,46 +1,44 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Numerics;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Player : MonoBehaviour
+public class Player : Character
 {
+    public Character target;
+    public int Lv_Hp = 200;
+    public int Lv_Gold = 200;
 
-    public GameObject Monster;
+    /// <summary>
+    /// 쿨타임이 없으면 굉장히 빠른 속도로 공격을 하기에 넣어주는 변수(변동 가능성 있음)
+    /// </summary>
+    float Attack_CoolTime = 0.0f;   
 
-    public int Damage;      // 플레이어의 공격력
-
-    public Animator Animator;
-
-    public void Start()
+    private void Start()
     {
-        
+        Init(10, 10);   // hp = 10, damage = 10
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        Monster = GameObject.FindGameObjectWithTag("monster");
-    }
+
 
     private void Update()
     {
-        if (Monster != null)
+        if(Attack_CoolTime < Attack_Speed)  // 어택 쿨타임이 어택 스피드보다 작을 때 실행
         {
-            if (Monster.GetComponent<MonsterBase>().hp > 0)
-            {
-                Animator.SetInteger("AniState", 1);
-            }
+            Attack_CoolTime += Time.deltaTime;  // 어택 쿨타임은 Time.deltaTime 만큼 증가하고 
         }
-        else if(Monster == null)
+        else        // 결국은 어택 쿨타임이 어택 스피드와 같아지게 되고 그 때 실행(공격이 실행 됨)
         {
-            Animator.SetInteger("AniState", 2);
+            Hit_Damage(target, Damage); // Charater의 Hit_Damage함수 실행(타겟은 유니티에서 설정, 플레이어의 데미지(지금은 10)을 실행
+            Attack_CoolTime = 0f;   // 공격이 끝나면 어택 쿨타임은 다시 0으로 초기화 됨
         }
     }
 
-    public void Attack()
+    public void Spawn()
     {
-        Monster.GetComponent<MonsterBase>().hp -= Damage;
+        Hp = MaxHp;
+        State = Character_State.Idle;
     }
-
 }
