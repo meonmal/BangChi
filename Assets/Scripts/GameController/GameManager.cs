@@ -26,6 +26,7 @@ public class GameManager : MonoBehaviour
             Level_Hp += 1;
             GameManager.Instance.Text_Level_Hp.text = "Level HP : " + Level_Hp;
         }
+
         public void Get_Level_Damage()
         {
             Level_Damage += 1;
@@ -78,7 +79,6 @@ public class GameManager : MonoBehaviour
             }
             
         }
-        
 
         if (!set)
         {

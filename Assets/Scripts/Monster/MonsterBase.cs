@@ -13,7 +13,8 @@ public class MonsterBase : Character
 {
     public Character target;
     public int Lv_Hp = 200;
-    public int Lv_Gold = 200;   
+    public int Lv_Gold = 200;
+    public float moveSpeed = 5.0f;
 
     private void Start()
     {
@@ -22,10 +23,17 @@ public class MonsterBase : Character
 
     private void Update()
     {
+        OnMoveUpdate(Time.deltaTime);
+
         if (State == Character_State.Die)
         {
             return;
         }
+    }
+
+    private void OnMoveUpdate(float deltaTime)
+    {
+        transform.Translate(deltaTime * moveSpeed * -transform.right, Space.World);
     }
 
     public override void OnDie()
@@ -44,6 +52,4 @@ public class MonsterBase : Character
         Hp = MaxHp;
         State = Character_State.Idle;
     }
-
-
 }

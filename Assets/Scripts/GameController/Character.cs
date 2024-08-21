@@ -63,11 +63,9 @@ public class Character : MonoBehaviour
         GameManager.Instance.Set_Text(damage.ToString(), target.transform.position);
     }
 
-
     public virtual void OnDie()
     {
         Debug.Log("Á×À½");
         State = Character_State.Die;
     }
-
 }

@@ -21,8 +21,6 @@ public class Player : Character
         Init(10, 10);   // hp = 10, damage = 10
     }
 
-
-
     private void Update()
     {
         if(Attack_CoolTime < Attack_Speed)  // 어택 쿨타임이 어택 스피드보다 작을 때 실행
