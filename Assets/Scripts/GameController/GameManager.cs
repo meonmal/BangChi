@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour
         public BigInteger Gold;
         public BigInteger Level_Hp;
         public BigInteger Level_Damage;
+        public string Status;
 
         public void Get_Gold(BigInteger vaule, UnityEngine.Vector3 pos)
         {
@@ -23,14 +24,31 @@ public class GameManager : MonoBehaviour
 
         public void Get_Level_Hp()
         {
-            Level_Hp += 1;
-            GameManager.Instance.Text_Level_Hp.text = "Level HP : " + Level_Hp;
+            if(Gold >= Level_Hp * 10)
+            {
+                Gold -= Level_Hp * 10;
+                Level_Hp += 1;
+                GameManager.Instance.Text_Level_Hp.text = "Level HP : " + Level_Hp;
+            }
+            
+            
         }
 
         public void Get_Level_Damage()
         {
-            Level_Damage += 1;
-            GameManager.Instance.Text_Level_Damage.text = "Level Damage : " + Level_Damage;
+            if(Gold >= Level_Damage * 5)
+            {
+                Gold -= Level_Damage * 5;
+                Level_Damage += 1;
+                Status = "pow";
+                Player.Instance.Level_Up(Status);
+                GameManager.Instance.Text_Level_Damage.text = "Level Damage : " + Level_Damage;
+                GameManager.Instance.Text_Gold.text = "Gold : " + Gold;
+            }
+            else
+            {
+                GameManager.Instance.Set_Text("∞ÒµÂ ∫Œ¡∑");
+            }
         }
     }
 
@@ -62,6 +80,15 @@ public class GameManager : MonoBehaviour
         
     }
 
+    public void Butten_Level_Up_Hp()
+    {
+        m_Player_Value.Get_Level_Hp();
+    }
+
+    public void Butten_Level_Up_Damage()
+    {
+        m_Player_Value.Get_Level_Damage();
+    }
 
 
     public void Set_Text(string text, UnityEngine.Vector3 pos)
@@ -73,7 +100,7 @@ public class GameManager : MonoBehaviour
             {
                 t.text = text;
                 t.transform.position = Camera.main.WorldToScreenPoint(pos);
-                t.gameObject.SetActive(true);
+                t.GetComponent<Controller_Text>().Init();
                 set = true;
                 break;
             }
@@ -85,6 +112,33 @@ public class GameManager : MonoBehaviour
             TextMeshProUGUI t = Instantiate(Text_Damage, Camera.main.WorldToScreenPoint(pos), UnityEngine.Quaternion.identity).GetComponent<TextMeshProUGUI>();
             t.transform.SetParent(Text_Damage.transform.parent);
             t.text = text;
+            t.GetComponent<Controller_Text>().Init();
+            Text_List.Add(t);
+        }
+    }
+
+    public void Set_Text(string text)
+    {
+        bool set = false;
+        foreach (TextMeshProUGUI t in Text_List)
+        {
+            if (!t.gameObject.activeSelf)
+            {
+                t.text = text;
+                t.transform.position = new UnityEngine.Vector2(Screen.width * 0.5f, Screen.height * 0.5f);
+                t.GetComponent<Controller_Text>().Init();
+                set = true;
+                break;
+            }
+
+        }
+
+        if (!set)
+        {
+            TextMeshProUGUI t = Instantiate(Text_Damage, new UnityEngine.Vector2(Screen.width * 0.5f, Screen.height * 0.5f), UnityEngine.Quaternion.identity).GetComponent<TextMeshProUGUI>();
+            t.transform.SetParent(Text_Damage.transform.parent);
+            t.text = text;
+            t.GetComponent<Controller_Text>().Init();
             Text_List.Add(t);
         }
     }

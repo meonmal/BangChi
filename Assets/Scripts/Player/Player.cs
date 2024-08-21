@@ -7,9 +7,17 @@ using UnityEngine.UI;
 
 public class Player : Character
 {
+    public static Player Instance;
     public Character target;
     public int Lv_Hp = 200;
     public int Lv_Gold = 200;
+
+
+    private void Awake()
+    {
+        Instance = this;
+    }
+
 
     /// <summary>
     /// 쿨타임이 없으면 굉장히 빠른 속도로 공격을 하기에 넣어주는 변수(변동 가능성 있음)
@@ -39,4 +47,14 @@ public class Player : Character
         Hp = MaxHp;
         State = Character_State.Idle;
     }
+
+    public void Level_Up(string status)
+    {
+        if (status == "pow")
+        {
+            Damage += Damage * GameManager.Instance.m_Player_Value.Level_Damage;
+        }
+    }
+
+
 }
