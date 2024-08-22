@@ -8,16 +8,21 @@ using UnityEngine.UI;
 public class Player : Character
 {
     public static Player Instance;
+    
     public Character target;
+    
     public GameObject monster;
+    
     public int Lv_Hp = 200;
+    
     public int Lv_Gold = 200;
+    
     public Animator animator;
-
 
     private void Awake()
     {
         Instance = this;
+        
         animator = GetComponent<Animator>();
     }
 
@@ -70,6 +75,7 @@ public class Player : Character
     public void Spawn()
     {
         Hp = MaxHp;
+        
         State = Character_State.Idle;
     }
 

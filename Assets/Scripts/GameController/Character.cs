@@ -6,10 +6,15 @@ using UnityEngine;
 public class Character : MonoBehaviour
 {
     public BigInteger Hp;
+    
     public BigInteger MaxHp;
+    
     public BigInteger Damage;
+    
     public float Attack_Speed;
+    
     public Character_State State;
+    
     public BigInteger Gold;
 
     public enum Character_State
@@ -21,10 +26,15 @@ public class Character : MonoBehaviour
     public void Init(BigInteger hp, BigInteger damage)
     {
         MaxHp = hp;
+        
         Hp = MaxHp;
+        
         Damage = damage;
+        
         Attack_Speed = 1.0f;
+        
         Gold = 10;
+        
         State = Character_State.Idle;
     }
 
@@ -59,13 +69,16 @@ public class Character : MonoBehaviour
     public void Hit_Damage(Character target, BigInteger damage)
     {
         target.Get_Damage(damage);
+        
         Debug.Log("target State : " + target.State + "HP : " + target.Hp + " / "+ damage);
+        
         GameManager.Instance.Set_Text(damage.ToString(), target.transform.position);
     }
 
     public virtual void OnDie()
     {
         Debug.Log("Á×À½");
+        
         State = Character_State.Die;
     }
 }

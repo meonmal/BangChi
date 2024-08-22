@@ -5,17 +5,20 @@ using UnityEngine;
 
 public class StageText : MonoBehaviour
 {
+    public GameObject monster;
+
     public float stageUpSpeed = 100.0f;
 
     TextMeshProUGUI stage;
 
-    int StageIndex = 0;
+    public int StageIndex = 1;
 
     float displayStage = 0.0f;
 
     public void Awake()
     {
         Transform child = transform.GetChild(1);
+        
         stage = child.GetComponent<TextMeshProUGUI>();
     }
 
@@ -39,12 +42,17 @@ public class StageText : MonoBehaviour
     public void OnInitialized()
     {
         Stage = 0;
-        stage.text = $"0";
+        
+        stage.text = $"0" + StageIndex;
     }
 
 
     public void AddStage(int point)
     {
+        monster.GetComponent<MonsterBase>().point = point;
+        
+        point = StageIndex;
+        
         Stage += point;
     }
 

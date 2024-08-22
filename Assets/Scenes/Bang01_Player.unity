@@ -960,6 +960,10 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 1518942307}
+    - target: {fileID: 2795774665494215443, guid: 714b3e5b1a1531b49866f166bc8f034c, type: 3}
+      propertyPath: StageText
+      value: 
+      objectReference: {fileID: 1662850653}
     - target: {fileID: 3692913715631092002, guid: 714b3e5b1a1531b49866f166bc8f034c, type: 3}
       propertyPath: m_BodyType
       value: 0
@@ -1603,7 +1607,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: efeaa1d78e72ea54597ea8d305c2f329, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  monster: {fileID: 1737377575}
   stageUpSpeed: 100
+  StageIndex: 1
 --- !u!1 &1737377575 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4300312816426556742, guid: 714b3e5b1a1531b49866f166bc8f034c, type: 3}
@@ -2094,8 +2100,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4278190080
+  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -2515,7 +2521,7 @@ PrefabInstance:
     - target: {fileID: 9139101833722903075, guid: 05332da7115e5ac4283e946e6d081f64, type: 3}
       propertyPath: monster
       value: 
-      objectReference: {fileID: 1737377575}
+      objectReference: {fileID: 0}
     - target: {fileID: 9139101833722903075, guid: 05332da7115e5ac4283e946e6d081f64, type: 3}
       propertyPath: animator
       value: 
