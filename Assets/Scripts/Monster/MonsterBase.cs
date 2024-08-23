@@ -64,10 +64,10 @@ public class MonsterBase : Character
         player.GetComponent<Player>().monster = null;
         
         GameManager.Instance.m_Player_Value.Get_Gold(Gold, this.transform.position);
-        
-        StageText.StageIndex++;
-        
-        StageText.AddStage(point);
+
+        StageText.StageNumber++;
+
+        StageText.StageUp();
         
         this.gameObject.SetActive(false);
         

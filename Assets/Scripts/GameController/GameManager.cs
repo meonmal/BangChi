@@ -79,11 +79,12 @@ public class GameManager : MonoBehaviour
     
     public List<TextMeshProUGUI> Text_List;
 
-
     private void Awake()
     {
         Instance = this;
     }
+
+
 
 
     public void Start()
@@ -99,7 +100,7 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-        
+       
     }
 
     public void Butten_Level_Up_Hp()
