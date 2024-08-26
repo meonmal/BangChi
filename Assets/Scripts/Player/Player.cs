@@ -39,7 +39,7 @@ public class Player : Character
 
     public void OnCollisionEnter2D(Collision2D collision)
     {
-        monster = GameObject.FindGameObjectWithTag("monster");
+        monster = GameObject.FindGameObjectWithTag("monster");  //monster와 닿아야 실행한다
     }
 
 

@@ -78,7 +78,7 @@ public class MonsterBase : Character
     {
         
         MaxHp += MaxHp * Lv_Hp / 100;
-        // MaxHp = 10 + 10 * 200 / 100 가 현재 상태다.
+        // MaxHp = (10 + 10) * 200 / 100 가 현재 상태다.
         
         Gold += Gold * Lv_Gold / 100;
         
